@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Users</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 8px;
+      margin-right: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 6px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h2>User Directory</h2>
+  
+  <div class="search-box">
+    <select id="searchField">
+      <option value="name">Name</option>
+      <option value="city">City</option>
+    </select>
+    
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <button onclick="filterUsers()">Search</button>
+  </div>
+  
+  <ul id="userList"></ul>
+
+  <script>
+    // Sample data (20 users)
+    var users = [
+      { name: "Alice", city: "New York" },
+      { name: "Bob", city: "Chicago" },
+      { name: "Charlie", city: "Los Angeles" },
+      { name: "David", city: "Miami" },
+      { name: "Eva", city: "Dallas" },
+      { name: "Frank", city: "Seattle" },
+      { name: "Grace", city: "Austin" },
+      { name: "Helen", city: "Boston" },
+      { name: "Ian", city: "Denver" },
+      { name: "Jane", city: "San Diego" },
+      { name: "Karl", city: "Phoenix" },
+      { name: "Luna", city: "Houston" },
+      { name: "Mike", city: "Atlanta" },
+      { name: "Nina", city: "Orlando" },
+      { name: "Oscar", city: "San Jose" },
+      { name: "Paul", city: "Las Vegas" },
+      { name: "Quinn", city: "Portland" },
+      { name: "Rachel", city: "Tampa" },
+      { name: "Steve", city: "Sacramento" },
+      { name: "Tina", city: "Cleveland" }
+    ];
+
+    // Show all users on page load
+    window.onload = function() {
+      displayUsers(users);
+    };
+
+    // Function to display users in the list
+    function displayUsers(data) {
+      var userList = document.getElementById("userList");
+      userList.innerHTML = ""; // clear previous list
+
+      for (var i = 0; i < data.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = data[i].name + " - " + data[i].city;
+        userList.appendChild(li);
+      }
+
+      if (data.length === 0) {
+        userList.innerHTML = "<li>No users found</li>";
+      }
+    }
+
+    // Filter users based on input
+    function filterUsers() {
+      var field = document.getElementById("searchField").value;
+      var keyword = document.getElementById("searchInput").value.toLowerCase();
+
+      var filtered = [];
+
+      for (var i = 0; i < users.length; i++) {
+        var value = users[i][field].toLowerCase();
+        if (value.indexOf(keyword) !== -1) {
+          filtered.push(users[i]);
+        }
+      }
+
+      displayUsers(filtered);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login & Day Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    input, button {
+      margin: 10px;
+      padding: 8px;
+      width: 90%;
+      font-size: 14px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    #login-message, #day-message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Login Section -->
+    <div id="login-section">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username"><br>
+      <input type="password" id="password" placeholder="Password"><br>
+      <button onclick="login()">Login</button>
+      <p id="login-message"></p>
+    </div>
+
+    <hr>
+
+    <!-- Day Checker Section -->
+    <div id="day-section">
+      <h2>Check the Day</h2>
+      <button onclick="checkDay()">What Day is Today?</button>
+      <p id="day-message"></p>
+    </div>
+  </div>
+
+  <script>
+    var attemptsLeft = 3;
+
+    function login() {
+      var user = document.getElementById("username").value;
+      var pass = document.getElementById("password").value;
+      var message = document.getElementById("login-message");
+
+      if (user === "admin" && pass === "1234") {
+        message.textContent = "Login successful!";
+        // Clear fields after success
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+      } else {
+        attemptsLeft = attemptsLeft - 1;
+        if (attemptsLeft > 0) {
+          message.textContent = "Wrong credentials. Attempts left: " + attemptsLeft;
+        } else {
+          message.textContent = "No more attempts left. Login disabled.";
+          document.getElementById("username").disabled = true;
+          document.getElementById("password").disabled = true;
+        }
+      }
+    }
+
+    function checkDay() {
+      var today = new Date();
+      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var months = ["January", "February", "March", "April", "May", "June", "July",
+                    "August", "September", "October", "November", "December"];
+
+      var dayName = days[today.getDay()];
+      var monthName = months[today.getMonth()];
+      var date = today.getDate();
+      var year = today.getFullYear();
+
+      var fullDate = dayName + ", " + monthName + " " + date + ", " + year;
+
+      var message = "Today is " + fullDate;
+
+      document.getElementById("day-message").textContent = message;
+    }
+  </script>
+
+</body>
+</html>

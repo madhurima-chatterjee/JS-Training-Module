@@ -1,0 +1,55 @@
+ <!-- DOM Methods -->
+
+<!-- getElementById -->
+
+<p id="title">Welcome!</p>
+<script>
+  const title = document.getElementById("title");
+  title.style.color = "blue";
+</script>
+
+<!-- query Selector  -->
+<p class="msg">Hello</p>
+<script>
+  const msg = document.querySelector(".msg");
+  msg.innerText = "Updated!";
+</script>
+
+<!-- DOM Events - on click -->
+<button onclick="sayHello()">Click Me</button>
+<script>
+  function sayHello() {
+    alert("Hello!");
+  }
+</script>
+
+<!-- on change -->
+<input type="text" onchange="logValue(this)">
+<script>
+  function logValue(input) {
+    console.log(input.value);
+  }
+
+
+// Event Listeners //
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", () => {
+  alert("Button Clicked!");
+});
+
+// can also remove listeners 
+btn.removeEventListener("click", handler);
+
+// create, update, remove elements
+const div = document.createElement("div");
+div.textContent = "Hello!";
+document.body.appendChild(div);
+
+div.textContent = "Updated text";
+div.style.color = "green";
+
+document.body.removeChild(div);
+
+div.remove();
+
+</script>

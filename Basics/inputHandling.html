@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      color: red;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .form-container {
+        padding: 15px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Contact Form</h2>
+
+    <label>Name:</label>
+    <input type="text" id="nameInput">
+
+    <label>Email:</label>
+    <input type="text" id="emailInput">
+
+    <button onclick="validateForm()">Submit</button>
+
+    <p id="message"></p>
+  </div>
+
+  <script>
+    // Form validation function
+    function validateForm() {
+      // Get input values
+      var name = document.getElementById("nameInput").value;
+      var email = document.getElementById("emailInput").value;
+
+      // Declare message variable and validity boolean
+      let message = "";
+      let isValid = true;
+
+      // Check if name is empty
+      if (name === "") {
+        message += "Name is required. ";
+        isValid = false;
+      }
+
+      // Check if email is empty
+      if (email === "") {
+        message += "Email is required.";
+        isValid = false;
+      }
+
+      const messageElement = document.getElementById("message");
+
+      if (isValid) {
+        // Success message
+        message = "Form submitted successfully!";
+        messageElement.style.color = "green";
+
+        // Clear inputs
+        document.getElementById("nameInput").value = "";
+        document.getElementById("emailInput").value = "";
+      } else {
+        messageElement.style.color = "red";
+      }
+
+      // Show the message
+      messageElement.textContent = message;
+    }
+  </script>
+</body>
+</html>
