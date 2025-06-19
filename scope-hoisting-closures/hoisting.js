@@ -1,5 +1,5 @@
 // hoisting function 
-sayHi(); // ✅ Works
+sayHi(); //Works
 function sayHi() {
   console.log("Hi!");
 }
