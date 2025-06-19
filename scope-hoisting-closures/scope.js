@@ -23,4 +23,4 @@ showAge(); // 30
   let a = 10;
   const b = 20;
 }
-// console.log(a); // ❌ Error
+// console.log(a); // Error
